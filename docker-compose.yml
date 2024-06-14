@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mysql:8.3.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      TZ: ${TZ}
+    env_file:
+      - .env
+    ports:
+      - ${DB_PORT}:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  rails:
+    build:
+      context: ./rails
+    command: bash -c "tail -f log/development.log"
+    volumes:
+      - ./rails:/myapp
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+
+volumes:
+  mysql_data:
