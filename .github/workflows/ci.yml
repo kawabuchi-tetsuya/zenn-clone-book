@@ -52,7 +52,7 @@ jobs:
         run: |
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+          bundle exec ridgepole --apply --file db/schemas/Schemafile --config config/database.yml --env test
 
       - name: Run rspec
         run: bundle exec rspec

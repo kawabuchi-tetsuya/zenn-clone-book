@@ -66,4 +66,7 @@ RSpec.configure do |config|
     Rails.application.load_tasks    
     Rake.application['ridgepole:apply'].invoke
   end
+
+  # FactoryBotの宣言を省略
+  config.include FactoryBot::Syntax::Methods
 end

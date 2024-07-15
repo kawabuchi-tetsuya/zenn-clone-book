@@ -17,7 +17,7 @@ module DeviseHackFakeSession
 
       def set_fake_session
         if Rails.configuration.respond_to?(:api_only) && Rails.configuration.api_only
-          request.env["rack.session"] ||= ::DeviseHackFakeSession::FakeSession.new
+          request.env['rack.session'] ||= ::DeviseHackFakeSession::FakeSession.new
         end
       end
   end
