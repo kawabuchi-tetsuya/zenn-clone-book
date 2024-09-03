@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
       namespace :current do
         resource :user, only: %i[show]
-        resources :articles, only: %i[create update]
+        resources :articles, only: %i[index show create update]
       end
       resources :articles, only: %i[index show]
     end
